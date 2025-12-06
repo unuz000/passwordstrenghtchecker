@@ -1,1 +1,21 @@
+import re
+
+def check_password_strength(password):
+    # Strong: At least 8 chars, one uppercase, one lowercase, one special char
+    strong_pattern = r"^(?=.*[A-Z])(?=.*[a-z])(?=.*[@$!%*&])[A-Za-z\d@$!%*&]{8,}$"
+    
+    # Moderate: At least 6 chars, one letter, one number
+    moderate_pattern = r"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$"
+
+    if re.match(strong_pattern, password):
+        return "strong"
+    elif re.match(moderate_pattern, password):
+        return "moderate"
+    else:
+        return "weak"
+
+
+password = input("Enter a password: ")
+strength = check_password_strength(password)
+print(f"Password strength: {strength}")
 
